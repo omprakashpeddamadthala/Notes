@@ -1,7 +1,5 @@
 # Spring Boot Data Pagination and Sorting Tutorial
 
-Welcome to this comprehensive tutorial on **Spring Boot Data Pagination and Sorting**, designed to take you from basic to advanced concepts with detailed code explanations. This tutorial uses a real-time Spring Boot project with Lombok, focused on the **e-commerce domain**. Each topic includes multiple examples (up to 10 where applicable) to illustrate different scenarios, and the content is organized with a navigable **Table of Contents** in Markdown format.
-
 ---
 
 ## Table of Contents
