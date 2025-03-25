@@ -1,0 +1,52 @@
+pipeline {
+    
+    agent any
+
+    tools {
+        jdk 'jdk21'
+        maven 'maven3'
+    }
+    stages {
+        stage('Git Checkout') {
+            steps {
+                git 'https://github.com/omprakashpeddamadthala/blog.git'
+            }
+        }
+        stage('Compile') {
+            steps {
+                sh "mvn compile"
+            }
+        }
+        stage('Test') {
+            steps {
+                sh "mvn test"
+            }
+        }
+    
+        stage('Build') {
+            steps {
+                sh "mvn package"
+            }
+        }
+        stage('Build and Tag Docker Image') {
+            steps {
+                script {
+                    withDockerRegistry(credentialsId: '5bba1c65-b38f-4f83-b8ee-111b11ad35e9', toolName: 'docker') {
+                        sh "docker build -t omprakashornold/blog:latest ."
+                    }
+                }
+            }
+        }
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    withDockerRegistry(credentialsId: '5bba1c65-b38f-4f83-b8ee-111b11ad35e9', toolName: 'docker') {
+                        sh "docker push omprakashornold/blog:latest"
+                    }
+                }
+            }
+        }
+        
+    }
+  
+}
