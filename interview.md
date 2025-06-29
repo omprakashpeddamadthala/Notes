@@ -34,7 +34,7 @@ We've used real-world eCommerce examples 🛒 to help you relate concepts practi
 
 ---
 
-## 1. Class Loading Mechanism 🔄
+## 1. Class Loading Mechanism
 
 Java class loading is part of the Java Runtime Environment (JRE) which loads, links, and initializes classes. Let's understand it using an **eCommerce** application 🛒.
 
