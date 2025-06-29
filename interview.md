@@ -6,7 +6,7 @@ We've used real-world eCommerce examples 🛒 to help you relate concepts practi
 
 ## 📚 Table of Contents
 
-1. [Class Loading Mechanism](#class-loading-mechanism)
+1. [Class Loading Mechanism](#1.class-loading-mechanism)
 2. [Memory Management in Java](#memory-management)
 3. [JDK vs JRE vs JVM](#jdk-jre-jvm)
 4. [Encapsulation](#encapsulation)
