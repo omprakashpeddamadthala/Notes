@@ -6,14 +6,14 @@ We've used real-world eCommerce examples 🛒 to help you relate concepts practi
 
 ## 📚 Table of Contents
 
-1. [Class Loading Mechanism](#1.class-loading-mechanism)
-2. [Memory Management in Java](#memory-management)
-3. [JDK vs JRE vs JVM](#jdk-jre-jvm)
-4. [Encapsulation](#encapsulation)
-5. [Inheritance](#inheritance)
-6. [Polymorphism](#polymorphism)
-7. [Abstraction](#abstraction)
-8. [Interfaces vs Abstract Classes](#interfaces-vs-abstract-classes)
+1. [Class Loading Mechanism](#1-class-loading-mechanism)
+2. [Memory Management in Java](#2-memory-management)
+3. [JDK vs JRE vs JVM](#3-jdk-jre-jvm)
+4. [Encapsulation](#4-encapsulation)
+5. [Inheritance](#5-inheritance)
+6. [Polymorphism](#6-polymorphism)
+7. [Abstraction](#7-abstraction)
+8. [Interfaces vs Abstract Classes](#8-interfaces-vs-abstract-classes)
 9. [Constructors](#constructors)
 10. [Access Modifiers](#access-modifiers)
 11. [String, StringBuilder, StringBuffer](#string-stringbuilder-stringbuffer)
