@@ -280,3 +280,138 @@ This can lead to **invalid or corrupted data** ❌
 * Keep variables `private`
 * Use public `getters` and `setters`
 * Add validations in setters if needed
+
+## 5. Inheritance 👪
+
+Inheritance allows a class to acquire properties and methods of another class. It helps in code reuse and establishing relationships between entities.
+
+### 🛒 Real-Time eCommerce Example
+
+Suppose we have different types of users:
+
+* **Admin** who can manage products
+* **Customer** who can place orders
+
+Both can share some common functionality (like `login`) but also have their specific behaviors.
+
+```java
+public class User {
+    protected String name;
+    protected String email;
+
+    public void login() {
+        System.out.println(name + " logged in with email " + email);
+    }
+}
+
+public class Admin extends User {
+    public void addProduct() {
+        System.out.println("Admin added a new product!");
+    }
+}
+
+public class Customer extends User {
+    public void placeOrder() {
+        System.out.println("Customer placed an order!");
+    }
+}
+```
+
+### 🔁 Benefits
+
+* Promotes **code reuse** ♻️
+* Simplifies maintenance
+* Establishes IS-A relationship (Customer IS-A User)
+
+### 📦 Analogy
+
+* `Admin` and `Customer` both **inherit** from `User`
+* Common features (login) come from parent, specific ones are added by child classes
+
+### 🔍 Types of Inheritance in Java
+
+* **Single** – One class inherits another ✅
+* **Multilevel** – Class inherits a class which inherits another ✅
+* **Hierarchical** – Multiple classes inherit one class ✅
+* **Multiple (via interfaces)** – Java doesn’t support multiple inheritance with classes ❌
+
+```java
+public class Seller extends User {
+    public void manageOrders() {
+        System.out.println("Seller managing orders!");
+    }
+}
+```
+
+### ⚠️ Best Practices
+
+* Don’t overuse inheritance; consider **composition** if it fits better
+* Use `super` to access parent class methods/constructors
+
+  ## 6. Polymorphism 🎭
+
+Polymorphism means "many forms" — the same method behaves differently based on the object calling it. It enables flexibility and reusability in your code.
+
+There are two main types:
+
+* **Compile-Time Polymorphism (Method Overloading)**
+* **Run-Time Polymorphism (Method Overriding)**
+
+### 🛒 Real-Time eCommerce Example
+
+Let’s say we’re building a `NotificationService`:
+
+```java
+public class NotificationService {
+    public void send(String message) {
+        System.out.println("Sending message: " + message);
+    }
+
+    public void send(String message, String medium) {
+        System.out.println("Sending via " + medium + ": " + message);
+    }
+}
+```
+
+This is **method overloading** (compile-time polymorphism).
+
+Now, let’s see **method overriding**:
+
+```java
+class Payment {
+    public void pay() {
+        System.out.println("Generic payment");
+    }
+}
+
+class CreditCardPayment extends Payment {
+    public void pay() {
+        System.out.println("Paid with Credit Card");
+    }
+}
+
+class UpiPayment extends Payment {
+    public void pay() {
+        System.out.println("Paid with UPI");
+    }
+}
+```
+
+Using it dynamically:
+
+```java
+Payment payment = new UpiPayment();
+payment.pay(); // Output: Paid with UPI
+```
+
+This is **run-time polymorphism**.
+
+### 📦 Analogy
+
+* Think of a **checkout button** 🛒: depending on the selected payment method, different logic is executed — same button, different actions!
+
+### ✅ Benefits
+
+* Flexible and scalable code
+* Easier to test and maintain
+* Helps in implementing **Open/Closed Principle** (open for extension, closed for modification)
