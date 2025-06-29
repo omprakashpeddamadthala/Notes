@@ -14,9 +14,9 @@ We've used real-world eCommerce examples 🛒 to help you relate concepts practi
 6. [Polymorphism](#6-polymorphism)
 7. [Abstraction](#7-abstraction)
 8. [Interfaces vs Abstract Classes](#8-interfaces-vs-abstract-classes)
-9. [Constructors](#constructors)
-10. [Access Modifiers](#access-modifiers)
-11. [String, StringBuilder, StringBuffer](#string-stringbuilder-stringbuffer)
+9. [Constructors](#9-constructors)
+10. [Access Modifiers](#10-access-modifiers)
+11. [String, StringBuilder, StringBuffer](#11-string-stringbuilder-stringbuffer)
 12. [String Pool and Immutability](#string-pool)
 13. [try-catch-finally](#try-catch-finally)
 14. [throw vs throws](#throw-vs-throws)
@@ -106,7 +106,7 @@ public class ProductService {
 
 ---
 
-## 2. Memory Management in Java 💾
+## 2. Memory Management in Java
 
 Memory in Java is managed automatically using the Garbage Collector (GC), but understanding how it works helps you write better code! Let's explore this using an **eCommerce cart service** 🛒.
 
@@ -173,7 +173,7 @@ If not cleaned up properly, this prevents GC from collecting unused carts 🧟�
 
 ---
 
-## 3. JDK vs JRE vs JVM ☕
+## 3. JDK vs JRE vs JVM
 
 Java is platform-independent because of the **JVM**, but often people confuse **JDK**, **JRE**, and **JVM**. Let’s break it down with an eCommerce developer’s perspective 👨‍💻🛒
 
@@ -281,7 +281,7 @@ This can lead to **invalid or corrupted data** ❌
 * Use public `getters` and `setters`
 * Add validations in setters if needed
 
-## 5. Inheritance 👪
+## 5. Inheritance
 
 Inheritance allows a class to acquire properties and methods of another class. It helps in code reuse and establishing relationships between entities.
 
@@ -348,7 +348,7 @@ public class Seller extends User {
 * Don’t overuse inheritance; consider **composition** if it fits better
 * Use `super` to access parent class methods/constructors
 
-  ## 6. Polymorphism 🎭
+  ## 6. Polymorphism
 
 Polymorphism means "many forms" — the same method behaves differently based on the object calling it. It enables flexibility and reusability in your code.
 
@@ -471,7 +471,7 @@ class CODProcessor extends OrderProcessor {
 * Great for building **framework-style architectures**
 
   
-## 8. Interfaces vs Abstract Classes 🔌📦
+## 8. Interfaces vs Abstract Classes
 
 Both **Interfaces** and **Abstract Classes** help achieve abstraction, but they serve different use cases.
 
@@ -531,7 +531,7 @@ interface Discount {
 ```
 
 
-## 9. Constructors 🏗️
+## 9. Constructors
 
 A **constructor** is a special method used to initialize objects. It is called when an object of a class is created.
 
@@ -643,7 +643,7 @@ public class Product {
 
 ---
 
-## 11. String, StringBuilder, StringBuffer 🧵
+## 11. String, StringBuilder, StringBuffer
 
 These are Java classes used to manipulate strings, but they differ in **mutability** and **thread safety**.
 
