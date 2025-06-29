@@ -218,7 +218,7 @@ java CheckoutService
 * If you're preparing for deployment, ensure the server has the **JRE**.
 * If you're building the application, install the full **JDK**.
 
-## 4. Encapsulation 🔐
+## 4. Encapsulation
 
 Encapsulation is one of the core OOP principles where **data (variables)** and **behavior (methods)** are bundled together in a class, and access to them is controlled.
 
