@@ -415,3 +415,58 @@ This is **run-time polymorphism**.
 * Flexible and scalable code
 * Easier to test and maintain
 * Helps in implementing **Open/Closed Principle** (open for extension, closed for modification)
+
+## 7. Abstraction 🔍
+
+Abstraction means hiding **implementation details** and showing only **functionality**. It helps in focusing on *what* an object does rather than *how* it does it.
+
+### 🛒 eCommerce Analogy:
+
+Imagine you're using an **Online Payment Gateway**:
+
+* You just click "Pay Now" 💳
+* You don't care how encryption, validation, or transaction processing works!
+
+### ✅ Real-Time Example
+
+Let’s create an abstract `OrderProcessor` class:
+
+```java
+abstract class OrderProcessor {
+    public void processOrder() {
+        validatePayment();
+        shipItems();
+    }
+
+    abstract void validatePayment();
+    abstract void shipItems();
+}
+
+class CODProcessor extends OrderProcessor {
+    void validatePayment() {
+        System.out.println("Validate payment on delivery");
+    }
+
+    void shipItems() {
+        System.out.println("Shipping via normal logistics");
+    }
+}
+```
+
+### 🔍 Key Points
+
+* Abstract class can have both **abstract** and **concrete methods**
+* It cannot be instantiated
+* Forces subclasses to implement specific behavior
+
+### 📦 Interface vs Abstract Class (Quick Hint)
+
+* Use **interface** when you want to define a contract
+* Use **abstract class** when base behavior is also needed
+
+### 🧠 Benefits
+
+* Decouples code
+* Promotes reusability
+* Great for building **framework-style architectures**
+
