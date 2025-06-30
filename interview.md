@@ -1205,3 +1205,175 @@ t2.start();
 * Prefer `ReentrantLock` for advanced control
 * Always guard **critical sections** with proper locking
 
+## 21. Synchronization 🔒
+
+In Java, **synchronization** is used to prevent **thread interference** and **memory consistency errors** when multiple threads access shared resources.
+
+### 🔐 Why Synchronization?
+
+Without it, threads may:
+
+* Access the **same variable** simultaneously
+* Overwrite updates
+* Cause inconsistent results (**race conditions**)
+
+### 🛒 Real-Life eCommerce Example
+
+```
+public class InventoryService {
+    private int itemsInStock = 10;
+
+    public synchronized void purchaseItem(String user) {
+        if (itemsInStock > 0) {
+            System.out.println("🛍️ " + user + " purchased an item!");
+            itemsInStock--;
+            System.out.println("📦 Remaining stock: " + itemsInStock);
+        } else {
+            System.out.println("❌ " + user + " couldn't buy. Out of stock!");
+        }
+    }
+}
+
+```
+
+### 🔧 Types of Synchronization
+
+| Type Usage Applies To |                    |                |
+| --------------------- | ------------------ | -------------- |
+| `synchronized`        | Lock on `this`     | Whole method   |
+| `synchronized` blk    | Custom lock object | Code block     |
+| Static sync           | Lock on class      | Static members |
+
+---
+
+## 22. wait(), notify(), notifyAll() 🔔
+
+Used for **inter-thread communication**.
+
+### 🛒 Example – Waiting for Restock
+
+```
+class Inventory {
+    private boolean inStock = false;
+
+    public synchronized void waitForStock() {
+        while (!inStock) {
+            try {
+                System.out.println("🕒 Waiting...");
+                wait();
+            } catch (InterruptedException e) {}
+        }
+        System.out.println("✅ Stock available!");
+    }
+
+    public synchronized void restock() {
+        inStock = true;
+        notifyAll();
+    }
+}
+
+```
+
+### Notes:
+
+* Must be inside `synchronized` block
+* Always check condition in `while`
+* Prefer higher-level concurrency APIs when possible
+
+---
+
+## 23. volatile and transient Keywords 🧠💨
+
+| Keyword Purpose Threading Serialization |                           |   |   |
+| --------------------------------------- | ------------------------- | - | - |
+| `volatile`                              | Immediate visibility      | ✅ | ❌ |
+| `transient`                             | Skip during serialization | ❌ | ✅ |
+
+### 🛒 Examples:
+
+```
+// volatile
+public class PaymentService {
+    private volatile boolean paid = false;
+}
+
+```
+
+```
+// transient
+public class Customer implements Serializable {
+    private String name;
+    private transient String password;
+}
+
+```
+
+---
+
+## 24. Executor Framework 🚦
+
+Used for managing threads efficiently via pools.
+
+### 🛒 eCommerce Example:
+
+```
+ExecutorService executor = Executors.newFixedThreadPool(3);
+
+executor.execute(() -> System.out.println("📩 Email..."));
+executor.execute(() -> System.out.println("📦 Update stock..."));
+executor.execute(() -> System.out.println("🏬 Notify warehouse..."));
+
+executor.shutdown();
+
+```
+
+### Common Executors:
+
+* `newFixedThreadPool(n)`
+* `newCachedThreadPool()`
+* `newSingleThreadExecutor()`
+
+---
+
+## 25. ThreadPool & ScheduledExecutorService ⏱️
+
+### 🛒 Process Orders with ThreadPool:
+
+```
+ExecutorService pool = Executors.newFixedThreadPool(5);
+for (int i = 1; i <= 10; i++) {
+    int id = i;
+    pool.execute(() -> System.out.println("🧾 Processing Order #" + id));
+}
+pool.shutdown();
+
+```
+
+### ⏲️ Schedule Repeated Task:
+
+```
+ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+
+scheduler.scheduleAtFixedRate(
+    () -> System.out.println("🔄 Checking carts..."),
+    0, 10, TimeUnit.MINUTES
+);
+
+```
+
+| Task Type Use This  |                            |
+| ------------------- | -------------------------- |
+| Reuse threads       | `FixedThreadPool`          |
+| Dynamic scaling     | `CachedThreadPool`         |
+| Periodic scheduling | `ScheduledExecutorService` |
+
+---
+
+If you prefer, I can now:
+
+* 📄 Export this as a **PDF**
+* 📥 Email it to you (if you're using ChatGPT Teams or Enterprise)
+* 📌 Help you paste it into a document here
+
+
+
