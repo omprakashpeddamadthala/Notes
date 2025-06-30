@@ -8,7 +8,7 @@ We've used real-world eCommerce examples 🛒 to help you relate concepts practi
 
 1. [Class Loading Mechanism](#1-class-loading-mechanism)
 2. [Memory Management in Java](#2-memory-management)
-3. [JDK vs JRE vs JVM](#3-jdk-jre-jvm)
+3. [JDK vs JRE vs JVM](#3-jdk-vs-jre-vs-jvm)
 4. [Encapsulation](#4-encapsulation)
 5. [Inheritance](#5-inheritance)
 6. [Polymorphism](#6-polymorphism)
