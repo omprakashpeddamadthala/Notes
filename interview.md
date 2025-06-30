@@ -2,7 +2,7 @@
 
 Welcome to the ultimate **Java Interview Preparation Guide** 🎯tailored for experienced professionals (3 to 15+ years). 
 We've used real-world eCommerce examples 🛒 to help you relate concepts practically.
----
+--
 
 ## 📚 Table of Contents
 
@@ -17,7 +17,7 @@ We've used real-world eCommerce examples 🛒 to help you relate concepts practi
 9. [Constructors](#9-constructors)
 10. [Access Modifiers](#10-access-modifiers)
 11. [String, StringBuilder, StringBuffer](#11-string-stringbuilder-stringbuffer)
-12. [String Pool and Immutability](#string-pool)
+12. [String Pool and Immutability](#12-string-pool-and-immutability)
 13. [try-catch-finally](#13-try-catch-finally)
 14. [throw vs throws](#14-throw-vs-throws)
 15. [Checked vs Unchecked Exceptions](#15-checked-vs-unchecked-exceptions)
