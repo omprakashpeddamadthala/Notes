@@ -416,7 +416,7 @@ This is **run-time polymorphism**.
 * Easier to test and maintain
 * Helps in implementing **Open/Closed Principle** (open for extension, closed for modification)
 
-## 7. Abstraction 🔍
+## 7. Abstraction
 
 Abstraction means hiding **implementation details** and showing only **functionality**. It helps in focusing on *what* an object does rather than *how* it does it.
 
