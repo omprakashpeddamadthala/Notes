@@ -1047,3 +1047,161 @@ new OrderThread().start();
 * Prefer `Executors` over manually managing threads
 * Always handle `InterruptedException`
 * Don’t block shared resources unnecessarily
+
+## 19. Thread Class vs Runnable Interface 🧵
+
+Java provides two main ways to create a thread:
+
+* Extending the `Thread` class
+* Implementing the `Runnable` interface
+
+### 🔍 Comparison
+
+| Feature     | `Thread` Class               | `Runnable` Interface     |
+| ----------- | ---------------------------- | ------------------------ |
+| Inheritance | Can’t extend any other class | Can extend another class |
+| Reusability | Limited (tight coupling)     | More flexible            |
+| Best Use    | Quick prototype/demo         | Production-grade apps    |
+
+### 🛒 eCommerce Example
+
+#### ✅ Using Runnable (Recommended)
+
+```java
+public class EmailService implements Runnable {
+    @Override
+    public void run() {
+        System.out.println("📧 Sending order confirmation email...");
+    }
+}
+
+Thread emailThread = new Thread(new EmailService());
+emailThread.start();
+```
+
+#### ⚠️ Using Thread (Less Flexible)
+
+```java
+public class EmailThread extends Thread {
+    @Override
+    public void run() {
+        System.out.println("📧 Sending email via Thread class");
+    }
+}
+
+new EmailThread().start();
+```
+
+### 📦 Analogy:
+
+* `Thread` = A delivery truck that **does everything** itself 🚚
+* `Runnable` = A delivery **driver** who can be assigned to any truck 🛵
+
+### ✅ Best Practices:
+
+* Prefer `Runnable` for cleaner architecture
+* Use `Thread` only when subclassing is necessary
+* Consider `ExecutorService` for scalable threading
+
+
+## 20. Callable and Future 📞🔮
+
+The `Runnable` interface cannot return a result or throw a checked exception.
+`Callable` was introduced to overcome these limitations.
+
+### 🔁 Key Differences:
+
+| Feature          | Runnable         | Callable                 |
+| ---------------- | ---------------- | ------------------------ |
+| Return Type      | void             | V (generic return type)  |
+| Throws Exception | No               | Yes (checked exceptions) |
+| Used With        | Thread, Executor | ExecutorService + Future |
+
+### 🛒 eCommerce Example:
+
+Imagine you're checking the stock of a product asynchronously:
+
+```java
+public class StockChecker implements Callable<Integer> {
+    @Override
+    public Integer call() throws Exception {
+        Thread.sleep(2000); // Simulate network delay
+        System.out.println("📦 Checking stock for Product...");
+        return 42; // units in stock
+    }
+}
+
+ExecutorService executor = Executors.newSingleThreadExecutor();
+Future<Integer> future = executor.submit(new StockChecker());
+System.out.println("🕒 Doing other work while stock is checked...");
+
+Integer stock = future.get(); // waits for result
+System.out.println("✅ Stock available: " + stock);
+executor.shutdown();
+```
+
+### 📦 Analogy:
+
+* `Runnable` = You fire a worker and **don’t wait for feedback**
+* `Callable` = You **ask a question** and wait for a **reply later**
+
+### ✅ Best Practices:
+
+* Use `Callable` when you need a **result** or expect **exceptions**
+* Always shut down the executor after use
+* Handle `InterruptedException` and `ExecutionException`
+
+
+## 21. Synchronization 🔒
+
+In Java, **synchronization** prevents thread interference and memory consistency errors when multiple threads access shared resources.
+
+### 🔐 Why Synchronization?
+
+Without it, two threads may **corrupt shared data**, leading to inconsistent results.
+
+### ✅ Use Cases:
+
+* Order ID generation
+* Updating inventory
+* Logging payments
+
+### 🔧 Synchronized Options:
+
+1. `synchronized` method
+2. `synchronized` block
+3. Static synchronized
+
+### 🛒 Example: Inventory Update
+
+```java
+public class InventoryService {
+    private int itemsInStock = 50;
+
+    public synchronized void sellItem(String product) {
+        if (itemsInStock > 0) {
+            itemsInStock--;
+            System.out.println("🛒 Sold 1 " + product + ", Remaining: " + itemsInStock);
+        } else {
+            System.out.println("❌ Out of stock for " + product);
+        }
+    }
+}
+
+InventoryService service = new InventoryService();
+Thread t1 = new Thread(() -> service.sellItem("Shoes"));
+Thread t2 = new Thread(() -> service.sellItem("Shoes"));
+t1.start();
+t2.start();
+```
+
+### 📦 Analogy:
+
+* Imagine a **single key** 🔑 to a storeroom—only **one staff** can go in at a time.
+
+### ✅ Best Practices:
+
+* Keep synchronized blocks small to avoid bottlenecks
+* Prefer `ReentrantLock` for advanced control
+* Always guard **critical sections** with proper locking
+
