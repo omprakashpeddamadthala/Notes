@@ -802,7 +802,7 @@ public class CheckoutService {
 * Use `finally` for resource release
 * Don’t hide exceptions silently – log or rethrow them
 
-## 14. throw vs throws 🎯
+## 14. throw vs throws
 
 These keywords are often confused but serve different purposes in exception handling:
 
@@ -848,7 +848,7 @@ class PaymentFailedException extends Exception {
 * Always handle checked exceptions or declare with `throws`
 * Use `throw` only when you want to terminate flow with a custom error
 
-## 15. Checked vs Unchecked Exceptions ⚠️✅
+## 15. Checked vs Unchecked Exceptions
 
 Java has two main types of exceptions:
 
@@ -903,7 +903,7 @@ public void getUserCart(User user) {
 * Avoid using `Exception` or `Throwable` directly
 
 
-## 16. Custom Exceptions 🧨
+## 16. Custom Exceptions
 
 Custom exceptions help represent **application-specific errors** clearly and meaningfully.
 
@@ -950,7 +950,7 @@ public class ProductService {
 * Keep constructors simple (message, cause)
 * Avoid overusing them—use only when built-in ones don't fit
 
-## 17. try-with-resources ♻️
+## 17. try-with-resources 
 
 `try-with-resources` is a feature introduced in Java 7 to **automatically close** resources like files, streams, or DB connections.
 
@@ -990,7 +990,7 @@ public void generateReceipt(String orderId) {
 * Ensures proper resource closure
 * Makes code cleaner and less error-prone
 
-## 18. Thread Life Cycle 🔁
+## 18. Thread Life Cycle
 
 Java threads go through a well-defined lifecycle managed by the JVM and the OS.
 
@@ -1048,7 +1048,7 @@ new OrderThread().start();
 * Always handle `InterruptedException`
 * Don’t block shared resources unnecessarily
 
-## 19. Thread Class vs Runnable Interface 🧵
+## 19. Thread Class vs Runnable Interface
 
 Java provides two main ways to create a thread:
 
