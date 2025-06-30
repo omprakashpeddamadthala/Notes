@@ -1104,7 +1104,7 @@ new EmailThread().start();
 * Consider `ExecutorService` for scalable threading
 
 
-## 20. Callable and Future 📞🔮
+## 20. Callable and Future
 
 The `Runnable` interface cannot return a result or throw a checked exception.
 `Callable` was introduced to overcome these limitations.
@@ -1152,7 +1152,7 @@ executor.shutdown();
 * Handle `InterruptedException` and `ExecutionException`
 
 
-## 21. Synchronization 🔒
+## 21. Synchronization
 
 In Java, **synchronization** prevents thread interference and memory consistency errors when multiple threads access shared resources.
 
