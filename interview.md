@@ -596,7 +596,7 @@ public class Order {
 * Creating an object is like ordering a product.
 * Constructor is like setting the details before shipping it! 📦
 
-## 10. Access Modifiers 🔐
+## 10. Access Modifiers
 
 Access modifiers control the **visibility** of classes, methods, and variables.
 
