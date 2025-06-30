@@ -24,7 +24,7 @@ We've used real-world eCommerce examples 🛒 to help you relate concepts practi
 16. [Custom Exceptions](#16-custom-exceptions)
 17. [try-with-resources](#17-try-with-resources)
 18. [Thread Life Cycle](#18-thread-life-cycle)
-19. [Thread Class vs Runnable Interface](#19-thread-class-vs-runnable-class)
+19. [Thread Class vs Runnable Interface](#19-thread-class-vs-runnable-interface)
 20. [Callable and Future](#20-callable-and-future)
 21. [Synchronization](#21-synchronization)
 22. [wait(), notify(), notifyAll()](#22-wait-notify-notifyall)
