@@ -674,7 +674,7 @@ orderStatus.append(" -> Packed");
 System.out.println(orderStatus); // Processing -> Packed
 ```
 
-### 🧠 Why String is Immutable?
+### 12.Why String is Immutable?
 
 * Used in string pool 🧵
 * Safe for caching, keys in maps, etc.
@@ -691,3 +691,214 @@ System.out.println(orderStatus); // Processing -> Packed
 * `String`: Constant values like order IDs, keys, etc.
 * `StringBuilder`: Fast operations, single-threaded (URL building)
 * `StringBuffer`: Multi-threaded cases (status logs)
+
+## 12. String Pool and Immutability
+
+The **String Pool** is a memory optimization technique in Java. Since Strings are immutable, Java shares them to save space.
+
+### 🔁 What is the String Pool?
+
+* A special memory area inside the heap
+* Stores unique String literals
+* Avoids creating duplicates
+
+### 🧪 Example:
+
+```java
+String s1 = "welcome";
+String s2 = "welcome";
+String s3 = new String("welcome");
+
+System.out.println(s1 == s2); // true (same pool object)
+System.out.println(s1 == s3); // false (different objects)
+```
+
+### 🔐 Why Immutability?
+
+* Ensures consistency (e.g., shared keys)
+* Enables thread safety by design
+* Prevents tampering when used in interned Strings
+
+### 🛒 Real-Time eCommerce Example
+
+```java
+String couponCode = "SAVE10";
+String userInput = new String("SAVE10");
+
+if (couponCode.equals(userInput)) {
+    System.out.println("Coupon Applied!");
+}
+```
+
+> But `couponCode == userInput` would return `false` because `userInput` is not interned.
+
+To intern manually:
+
+```java
+if (couponCode == userInput.intern()) {
+    System.out.println("Now both point to the pool string");
+}
+```
+
+### 📦 Analogy:
+
+* Imagine String Pool as a **bookshelf** 📚
+* If 5 users request the same book title, Java gives the same **book reference** 📖
+
+### ✅ Best Practices
+
+* Always use `.equals()` for content comparison
+* Use `intern()` for memory optimization (only when needed)
+* Prefer literals over `new String()` unless there's a reason
+
+## 13. try-catch-finally
+
+Exception handling allows you to deal with **unexpected events** in a controlled way.
+
+### 🔁 Basic Structure
+
+```java
+try {
+    // risky code block
+} catch (ExceptionType e) {
+    // handle exception
+} finally {
+    // always runs (cleanup code)
+}
+```
+
+### 🛒 eCommerce Example:
+
+```java
+public class CheckoutService {
+    public void placeOrder(String userId) {
+        try {
+            System.out.println("Processing payment for user: " + userId);
+            int x = 1 / 0; // triggers exception
+        } catch (ArithmeticException ex) {
+            System.out.println("❌ Error: " + ex.getMessage());
+        } finally {
+            System.out.println("🧹 Closing DB connection & logging order event");
+        }
+    }
+}
+```
+
+### ⚙️ Flow:
+
+* `try`: Executes risky code (payment, DB access, etc.)
+* `catch`: Handles specific issues (e.g., failed payment, bad input)
+* `finally`: Runs always (resource cleanup, auditing)
+
+### 📦 Analogy:
+
+* `try`: Placing an order
+* `catch`: Refund or notify customer on failure
+* `finally`: Log order status and release DB connections
+
+### ✅ Best Practices:
+
+* Catch **specific exceptions** (not just `Exception`)
+* Use `finally` for resource release
+* Don’t hide exceptions silently – log or rethrow them
+
+## 14. throw vs throws 🎯
+
+These keywords are often confused but serve different purposes in exception handling:
+
+### 🆚 `throw` vs `throws`
+
+| Feature     | `throw`                      | `throws`                                |
+| ----------- | ---------------------------- | --------------------------------------- |
+| Purpose     | Actually throws an exception | Declares exceptions in method signature |
+| Used Inside | Method body                  | Method signature                        |
+| Followed By | Instance of `Throwable`      | Exception class name(s)                 |
+| Count       | One exception per `throw`    | Multiple exceptions allowed             |
+
+### 🛒 eCommerce Example:
+
+```java
+public class PaymentProcessor {
+
+    // throws declaration
+    public void processPayment(String userId) throws PaymentFailedException {
+        if (userId == null) {
+            // throw keyword
+            throw new PaymentFailedException("User ID cannot be null");
+        }
+    }
+}
+
+// Custom Exception
+class PaymentFailedException extends Exception {
+    public PaymentFailedException(String message) {
+        super(message);
+    }
+}
+```
+
+### 📦 Analogy:
+
+* `throw` = Actually **throwing a parcel** 📦
+* `throws` = Declaring that you **might throw** a parcel in the future 🪃
+
+### ✅ Best Practices:
+
+* Throw **specific, meaningful exceptions**
+* Always handle checked exceptions or declare with `throws`
+* Use `throw` only when you want to terminate flow with a custom error
+
+## 15. Checked vs Unchecked Exceptions ⚠️✅
+
+Java has two main types of exceptions:
+
+### ⚠️ Checked Exceptions
+
+* Checked at **compile time**
+* Must be either **caught** or **declared** using `throws`
+* Represent **recoverable** conditions
+
+#### ✅ Examples:
+
+* `IOException`, `SQLException`, `FileNotFoundException`
+
+#### 🛒 eCommerce Example:
+
+```java
+public void generateInvoice(String orderId) throws IOException {
+    FileWriter fw = new FileWriter("invoice.txt");
+    fw.write("Order ID: " + orderId);
+    fw.close();
+}
+```
+
+### ❌ Unchecked Exceptions
+
+* Occur at **runtime**
+* Not required to be caught or declared
+* Represent **programming errors** or **unexpected issues**
+
+#### ✅ Examples:
+
+* `NullPointerException`, `ArrayIndexOutOfBoundsException`, `ArithmeticException`
+
+#### 🛒 eCommerce Example:
+
+```java
+public void getUserCart(User user) {
+    // user might be null!
+    System.out.println(user.getCart().getItems());
+}
+```
+
+### 📦 Analogy:
+
+* Checked = Luggage that must be **declared and inspected** at airport 🛄
+* Unchecked = **Sudden turbulence** that happens mid-flight ✈️
+
+### ✅ Best Practices:
+
+* Use checked exceptions for **business-level errors** (e.g., payment failed)
+* Use unchecked for **programming bugs** that should be fixed in code
+* Avoid using `Exception` or `Throwable` directly
+
