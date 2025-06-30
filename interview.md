@@ -106,7 +106,7 @@ public class ProductService {
 
 ---
 
-## 2. Memory Management in Java
+## 2. Memory Management
 
 Memory in Java is managed automatically using the Garbage Collector (GC), but understanding how it works helps you write better code! Let's explore this using an **eCommerce cart service** 🛒.
 
