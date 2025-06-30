@@ -1205,48 +1205,8 @@ t2.start();
 * Prefer `ReentrantLock` for advanced control
 * Always guard **critical sections** with proper locking
 
-## 21. Synchronization 🔒
 
-In Java, **synchronization** is used to prevent **thread interference** and **memory consistency errors** when multiple threads access shared resources.
-
-### 🔐 Why Synchronization?
-
-Without it, threads may:
-
-* Access the **same variable** simultaneously
-* Overwrite updates
-* Cause inconsistent results (**race conditions**)
-
-### 🛒 Real-Life eCommerce Example
-
-```
-public class InventoryService {
-    private int itemsInStock = 10;
-
-    public synchronized void purchaseItem(String user) {
-        if (itemsInStock > 0) {
-            System.out.println("🛍️ " + user + " purchased an item!");
-            itemsInStock--;
-            System.out.println("📦 Remaining stock: " + itemsInStock);
-        } else {
-            System.out.println("❌ " + user + " couldn't buy. Out of stock!");
-        }
-    }
-}
-
-```
-
-### 🔧 Types of Synchronization
-
-| Type Usage Applies To |                    |                |
-| --------------------- | ------------------ | -------------- |
-| `synchronized`        | Lock on `this`     | Whole method   |
-| `synchronized` blk    | Custom lock object | Code block     |
-| Static sync           | Lock on class      | Static members |
-
----
-
-## 22. wait(), notify(), notifyAll() 🔔
+## 22. wait(), notify(), notifyAll()
 
 Used for **inter-thread communication**.
 
@@ -1310,7 +1270,7 @@ public class Customer implements Serializable {
 
 ---
 
-## 24. Executor Framework 🚦
+## 24. Executor Framework
 
 Used for managing threads efficiently via pools.
 
