@@ -902,3 +902,148 @@ public void getUserCart(User user) {
 * Use unchecked for **programming bugs** that should be fixed in code
 * Avoid using `Exception` or `Throwable` directly
 
+
+## 16. Custom Exceptions 🧨
+
+Custom exceptions help represent **application-specific errors** clearly and meaningfully.
+
+### 🛠️ How to Create a Custom Exception
+
+* Extend `Exception` for a **checked exception**
+* Extend `RuntimeException` for an **unchecked exception**
+
+### 📦 Real-Time eCommerce Example
+
+#### Create Custom Exception:
+
+```java
+public class ProductNotFoundException extends RuntimeException {
+    public ProductNotFoundException(String message) {
+        super(message);
+    }
+}
+```
+
+#### Use It in Code:
+
+```java
+public class ProductService {
+    public Product getProductById(String id) {
+        Product product = productRepository.findById(id);
+        if (product == null) {
+            throw new ProductNotFoundException("Product not found with ID: " + id);
+        }
+        return product;
+    }
+}
+```
+
+### 🎯 Why Use Custom Exceptions?
+
+* Make your code more **readable** and **self-explanatory**
+* Enable **specific error handling** in higher layers
+* Improve logging and debugging experience
+
+### ✅ Best Practices:
+
+* Name them meaningfully (e.g., `InvalidOrderException`)
+* Keep constructors simple (message, cause)
+* Avoid overusing them—use only when built-in ones don't fit
+
+## 17. try-with-resources ♻️
+
+`try-with-resources` is a feature introduced in Java 7 to **automatically close** resources like files, streams, or DB connections.
+
+### 🔧 Syntax
+
+```java
+try (ResourceType resource = new ResourceType()) {
+    // use the resource
+} catch (Exception e) {
+    // handle exception
+}
+```
+
+> The resource must implement `AutoCloseable` or `Closeable`
+
+### 🛒 Real-Time eCommerce Example
+
+```java
+public void generateReceipt(String orderId) {
+    try (FileWriter writer = new FileWriter("receipt.txt")) {
+        writer.write("Receipt for Order ID: " + orderId);
+        System.out.println("✅ Receipt generated!");
+    } catch (IOException e) {
+        System.out.println("❌ Failed to write receipt: " + e.getMessage());
+    }
+}
+```
+
+### 📦 Analogy:
+
+* Traditional `try-finally` = You open a store and **must remember** to lock up 🔐
+* `try-with-resources` = The **door auto-locks** when you leave 🚪✅
+
+### ✅ Benefits:
+
+* Reduces boilerplate code
+* Ensures proper resource closure
+* Makes code cleaner and less error-prone
+
+## 18. Thread Life Cycle 🔁
+
+Java threads go through a well-defined lifecycle managed by the JVM and the OS.
+
+### 🧬 Thread States:
+
+1. **New** – Thread is created but not started
+2. **Runnable** – Thread is ready to run and waiting for CPU
+3. **Running** – Thread is executing
+4. **Blocked** – Waiting to acquire a monitor lock
+5. **Waiting** – Waiting indefinitely for another thread’s signal
+6. **Timed Waiting** – Waiting for a specified time (e.g., `sleep`, `join(timeout)`)
+7. **Terminated** – Execution is complete or crashed
+
+### 📊 Diagram (textual):
+
+```
+NEW → start() → RUNNABLE → RUNNING
+         ↑             ↓
+     get CPU ← BLOCKED/WAITING/TIMED_WAITING
+                          ↓
+                    TERMINATED
+```
+
+### 🛒 Real-Time eCommerce Example
+
+```java
+public class OrderThread extends Thread {
+    @Override
+    public void run() {
+        System.out.println("📦 Placing order for user...");
+        try {
+            Thread.sleep(3000); // Simulating delay
+        } catch (InterruptedException e) {
+            System.out.println("❌ Interrupted: " + e.getMessage());
+        }
+        System.out.println("✅ Order placed successfully!");
+    }
+}
+
+// Running the thread
+new OrderThread().start();
+```
+
+### 📦 Analogy:
+
+* A thread is like a **delivery agent** 🚚
+* `New` = Assigned but not dispatched
+* `Runnable/Running` = Out for delivery
+* `Blocked/Waiting` = Waiting at traffic 🚦
+* `Terminated` = Delivery completed ✅
+
+### ✅ Best Practices:
+
+* Prefer `Executors` over manually managing threads
+* Always handle `InterruptedException`
+* Don’t block shared resources unnecessarily
