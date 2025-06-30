@@ -28,7 +28,7 @@ We've used real-world eCommerce examples 🛒 to help you relate concepts practi
 20. [Callable and Future](#20-callable-and-future)
 21. [Synchronization](#21-synchronization)
 22. [wait(), notify(), notifyAll()](#22-wait-notify-notifyall)
-23. [volatile and transient Keywords](#23-volatile-and-transient)
+23. [volatile and transient Keywords](#23-volatile-and-transient-keywords)
 24. [Executor Framework](#24-executor-framework)
 25. [ThreadPool & ScheduledExecutorService](#25-threadpool-scheduledexecutorservice)
 
