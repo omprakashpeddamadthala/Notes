@@ -1,5 +1,3 @@
-Below is a **clean, ordered, non-duplicated interview question list**, structured exactly the way a **senior-level Java + Spring Boot + microservices + banking interview** typically flows.
-Think of this as your **single source of truth** for preparation.
 
 ---
 
